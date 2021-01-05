@@ -1,1 +1,1 @@
-from gtrxl_torch import GTrXL 
+from gtrxl_torch.gtrxl_torch import GTrXL 
