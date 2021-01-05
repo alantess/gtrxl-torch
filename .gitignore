@@ -1,0 +1,5 @@
+dist/
+gtrxl_torch.egg-info/
+build/
+__pycache__/
+
