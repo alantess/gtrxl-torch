@@ -40,8 +40,6 @@ class TEL(TransformerEncoderLayer):
         # 2 GRUs are needed - 1 for the beginning / 1 at the end
         self.gru_1 = nn.GRU(d_model, d_model, num_layers=n_layers, batch_first=True)
         self.gru_2 = nn.GRU(input_size=d_model, hidden_size=d_model, num_layers=n_layers, batch_first=True)
-        self.device = T.device('cuda') if T.cuda.is_available() else T.device('cpu')
-        self.to(self.device)
 
     def forward(self, src: Tensor, src_mask: Optional[Tensor] = None,
                 src_key_padding_mask: Optional[Tensor] = None) -> Tensor:
@@ -70,11 +68,6 @@ class GTrXL(nn.Module):
         self.transfomer = TransformerEncoder(encoded, transformer_layers)
         self.fc1 = nn.Linear(d_model, fc2_dims)
         self.out = nn.Linear(fc2_dims, n_outputs)
-        # Module components devices, optimizer, files, etc
-        self.device = T.device('cuda') if T.cuda.is_available() else T.device('cpu')
-        self.to(self.device)
-        self.loss = nn.MSELoss()
-        self.optimizer = optim.Adam(self.parameters(), lr = lr) 
         self.file = os.path.join(chkpt_dir, network_name + '_net')
     def forward(self, x):
         x = self.embed(x)
@@ -88,6 +81,8 @@ class GTrXL(nn.Module):
 
     def load(self):
         self.load_state_dict(T.load(self.file))
+
+
 
 
 
