@@ -7,12 +7,27 @@ $ pip install gtrxl-torch
 
 ## Implementation
 ```python
-import torch
 from gtrxl_torch.gtrxl_torch import GTrXL
-transformer = GTrXL(1024,4,1,9,3)
-input = T.randn((32,16,1024),device=device)
-output = transformer.forward(input)
+import torch
+model = GTrXL(
+    d_model=512,
+    nheads=4,
+    n_layers=1,
+    n_outputs=5,
+    transformer_layers=1
+)
+input = torch.randn(32,16,512)
+output = model(input)
 ```
+### Saving Model
+```python
+  model.save()
+```
+### Loading Model
+```python
+  model.load()
+```
+
 ## Parameters
 - `d_model`: int.  
 The number of expected features in the encoder/decoder inputs
