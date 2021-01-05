@@ -11,7 +11,7 @@ import torch
 from gtrxl_torch.gtrxl_torch import GTrXL
 transformer = GTrXL(1024,4,1,9,3)
 input = T.randn((32,16,1024),device=device)
-output = transformer.forward(input
+output = transformer.forward(input)
 ```
 ## Parameters
 - `d_model`: int.  
