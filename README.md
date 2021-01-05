@@ -19,6 +19,9 @@ model = GTrXL(
 input = torch.randn(32,16,512)
 output = model(input)
 ```
+
+### Output Dimensions
+   Dimension ➯ [**Batch Size**, **Patches**, **Output Neurons**]
 ### Saving Model
 ```python
   model.save()
