@@ -44,11 +44,9 @@ Number of Transformer blocks.
 Number of Output Neurons for the first FC layer & input for the output Layer
 - `n_layers`: int.  
 RNN (GRU) layers. 
-- `lr`: float, default `0.00025`.  
-Learning Rate. 
 - `chkpt_dir`: str  default `model`.  
 Directory name where model is saved.
-- `network_name`: str, default `network`.  
+- `network_name`: str, default `network.pt`.  
 Name of the model (file) you're saving.
 
 
