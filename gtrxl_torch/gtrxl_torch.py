@@ -35,8 +35,8 @@ https://arxiv.org/pdf/1910.06764.pdf
 '''
 
 class TEL(TransformerEncoderLayer):
-    def __init__(self, d_model, nhead, n_layers=1):
-        super().__init__(d_model, nhead)
+    def __init__(self, d_model, nhead, n_layers=1, dim_feedforward=256, activation="relu", dropout=0):
+        super().__init__(d_model, nhead, dim_feedforward, dropout,activation)
         # 2 GRUs are needed - 1 for the beginning / 1 at the end
         self.gru_1 = nn.GRU(d_model, d_model, num_layers=n_layers, batch_first=True)
         self.gru_2 = nn.GRU(input_size=d_model, hidden_size=d_model, num_layers=n_layers, batch_first=True)
@@ -60,20 +60,16 @@ class TEL(TransformerEncoderLayer):
 Implementation of transfomer model using GRUs
 '''
 class GTrXL(nn.Module):
-    def __init__(self, d_model, nheads, n_layers, n_outputs, transformer_layers,fc2_dims=50, chkpt_dir="model", network_name='network.pt'):
+    def __init__(self, d_model, nheads,  transformer_layers,hidden_dims=256, n_layers=1 ,chkpt_dir="models", network_name='network.pt'):
         super(GTrXL, self).__init__()
         # Module layers
         self.embed = PositionalEncoding(d_model)
-        encoded = TEL(d_model, nheads, n_layers)
+        encoded = TEL(d_model, nheads, n_layers, dim_feedforward = hidden_dims)
         self.transfomer = TransformerEncoder(encoded, transformer_layers)
-        self.fc1 = nn.Linear(d_model, fc2_dims)
-        self.out = nn.Linear(fc2_dims, n_outputs)
         self.file = os.path.join(chkpt_dir, network_name)
     def forward(self, x):
         x = self.embed(x)
         x = self.transfomer(x)
-        x = F.relu(self.fc1(x)) 
-        x = self.out(x)
         return x
 
     def save(self):
@@ -81,8 +77,5 @@ class GTrXL(nn.Module):
 
     def load(self):
         self.load_state_dict(T.load(self.file))
-
-
-
 
 
