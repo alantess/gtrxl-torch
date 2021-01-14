@@ -12,8 +12,6 @@ import torch
 model = GTrXL(
     d_model=512,
     nheads=4,
-    n_layers=1,
-    n_outputs=5,
     transformer_layers=1
 )
 input = torch.randn(32,16,512)
@@ -21,7 +19,7 @@ output = model(input)
 ```
 
 ### Output Dimensions
-   Dimension ➯ [**Batch Size**, **Patches**, **Output Neurons**]
+   Dimension ➯ [**Batch Size**, **Patches**, **Memory Size**]
 ### Saving Model
 ```python
   model.save()
@@ -36,15 +34,13 @@ output = model(input)
 The number of expected features in the encoder/decoder inputs
 - `nheads`: int.  
 The number of heads in the multiheadattention models 
-- `n_outputs`: int.  
-Number of output neurons.
 - `transformer_layers`: int.  
 Number of Transformer blocks.
-- `fc2_dims`: int.  
-Number of Output Neurons for the first FC layer & input for the output Layer
+- `hidden_dims`: int.  
+Number of hidden neurons for the postion wise MLP. 
 - `n_layers`: int.  
 RNN (GRU) layers. 
-- `chkpt_dir`: str  default `model`.  
+- `chkpt_dir`: str  default `models`.  
 Directory name where model is saved.
 - `network_name`: str, default `network.pt`.  
 Name of the model (file) you're saving.
