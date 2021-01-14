@@ -2,7 +2,7 @@ from setuptools import setup,find_packages
 
 setup(
         name="gtrxl-torch",
-        version = '0.1.3',
+        version = '0.1.5',
         license="MIT", 
         description = "Gated-Transformer XL - PyTorch",
         author = "Alan Tessier",
