@@ -42,6 +42,8 @@ Number of hidden neurons for the postion wise MLP.
 RNN (GRU) layers. 
 - `chkpt_dir`: str  default `models`.  
 Directory name where model is saved.
+- `activation`: str, default `relu`.  
+Activation function for MLP.
 - `network_name`: str, default `network.pt`.  
 Name of the model (file) you're saving.
 

@@ -60,11 +60,11 @@ class TEL(TransformerEncoderLayer):
 Implementation of transfomer model using GRUs
 '''
 class GTrXL(nn.Module):
-    def __init__(self, d_model, nheads,  transformer_layers,hidden_dims=256, n_layers=1 ,chkpt_dir="models", network_name='network.pt'):
+    def __init__(self, d_model, nheads,  transformer_layers,hidden_dims=256, n_layers=1 ,chkpt_dir="models",activation='relu',network_name='network.pt'):
         super(GTrXL, self).__init__()
         # Module layers
         self.embed = PositionalEncoding(d_model)
-        encoded = TEL(d_model, nheads, n_layers, dim_feedforward = hidden_dims)
+        encoded = TEL(d_model, nheads, n_layers, dim_feedforward = hidden_dims, activation=activation)
         self.transfomer = TransformerEncoder(encoded, transformer_layers)
         self.file = os.path.join(chkpt_dir, network_name)
     def forward(self, x):
@@ -77,5 +77,6 @@ class GTrXL(nn.Module):
 
     def load(self):
         self.load_state_dict(T.load(self.file))
+
 
 
