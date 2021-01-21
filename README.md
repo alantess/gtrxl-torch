@@ -19,7 +19,7 @@ output = model(input)
 ```
 
 ### Output Dimensions
-   Dimension ➯ [**Batch Size**, **Patches**, **Memory Size**]
+   Dimension ➯ [**Query**, **Patches (KEYS)**, **Memory Size**]
 ### Saving Model
 ```python
   model.save()
