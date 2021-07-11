@@ -40,6 +40,10 @@ Number of Transformer blocks.
 Number of hidden neurons for the postion wise MLP. 
 - `n_layers`: int.  
 RNN (GRU) layers. 
+- `layer_norm_eps`: float, default `1e-5`.  
+The eps value in layer normalization components. 
+- `batch_first`: bool, default `False`.  
+(N, S, E) if batch first.
 - `chkpt_dir`: str  default `models`.  
 Directory name where model is saved.
 - `activation`: str, default `relu`.  
@@ -49,6 +53,5 @@ Name of the model (file) you're saving.
 
 
 ## Resources
-- *Using a transformer model on images* ➱[ Click Here](https://arxiv.org/abs/2010.11929)
 - *Alterations to the transformer model (**GTrXL**)* ➱ [Click Here](https://arxiv.org/abs/1910.06764)
 
